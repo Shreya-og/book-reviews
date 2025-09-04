@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <!-- Font Awesome Icon Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/styles/styles.css">
@@ -11,7 +12,7 @@
 </head>
 
 <body>
-    <header>
+    <!-- <header>
         <div class="hero">
             <h1>Book Notes</h1>
             <a href="/">
@@ -19,14 +20,17 @@
             </a>            
         </div>
         
-    </header>
+    </header> -->
 
-    <div>
-        <form class="book-search" action="/search" method="get">
-            <input type="text" name="search" id="searchInput" autocomplete="off" placeholder="Enter book name, author or isbn">
-            
+    <nav class="navbar bg-body-tertiary mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Book Notes</a>
+            <form class="d-flex book-search" action="/search" role="search" method="get">
+            <input class="form-control me-2" type="search" name="search" id="searchInput" autocomplete="off" placeholder="Enter book name, author or isbn" aria-label="Search"/>
             <div class="dropdown">
                 <ul id="dropdownList"></ul>
             </div>
-        </form>
-    </div>
+            <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>

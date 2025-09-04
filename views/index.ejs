@@ -1,5 +1,16 @@
 <%- include('partials/header.ejs') %>
 
+<!-- <div class="container"> -->
+   <!-- <div>
+        <form class="book-search" action="/search" method="get">
+            <input type="text" name="search" id="searchInput" autocomplete="off" placeholder="Enter book name, author or isbn">
+            
+            <div class="dropdown">
+                <ul id="dropdownList"></ul>
+            </div>
+        </form>
+    </div> -->
+
     <div class="books">
         <div class="sort">
             <p>Sort By: </p>
@@ -39,7 +50,7 @@
                                     <%= book.review_date %>
                                 </p>
                                 <h3>Rating</h3>
-                                <div class="rating" action="" method="post">
+                                <div class="rating" method="post">
                                     <% for (let i=0; i < book.rating; i++) { %>
                                         <span class="fa fa-star checked"></span>
                                         <% } %>
@@ -65,7 +76,10 @@
             </div>
             <% }); %>
 
+            <button class="add" name="add"><a href="/addBook">+</a></button>
+
     </div>
+<!-- </div> -->
 
 
 
