@@ -99,6 +99,42 @@ app.post("/updateReview", async (req, res) => {
 
 })
 
+app.get("/search", async (req, res) => {
+  try {
+    const searchQuery = req.query.search; 
+
+    if (!searchQuery || searchQuery.trim() === "") {
+      return res.redirect("/");
+    }
+
+    const result = await db.query(
+      `SELECT * FROM books
+      JOIN book_reviews ON books.book_id=book_reviews.book_id
+       WHERE title ILIKE $1 
+          OR author ILIKE $1 
+          OR CAST(cover_id AS TEXT) ILIKE $1
+        ORDER BY ${sort} ASC`,
+      [`%${searchQuery}%`]
+    );
+
+    if (result.rows.length === 0) {
+      // no match → send alert
+      return res.send(
+        `<script>alert("No book found. Please add '${searchQuery}'."); window.location.href="/";</script>`
+      );
+    }
+
+    res.render("index.ejs", {
+      data: result.rows,
+      searchTerm: searchQuery
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error performing search");
+  }
+});
+
+
 app.post("/addBook", async (req, res) => {
     const bookTitle = req.body.title;
     const coverId = req.body.cover_id;

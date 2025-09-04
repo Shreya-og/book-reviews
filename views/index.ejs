@@ -27,8 +27,10 @@
             <div class="book">
                 <% if (book.cover_id == 0){ %>
                     <div class="blank-cover">
-                        <div>
-                            <h3><%= book.title %></h3>
+                        <div class="id="book-<%= book.id %>">
+                            <h3 class="<%= searchTerm && book.title.toLowerCase().includes(searchTerm.toLowerCase()) ? 'highlight' : '' %>">
+                                <%= book.title %>
+                            </h3>
                             <h4>By <%= book.author %></h4>
                         </div>
                     </div>
