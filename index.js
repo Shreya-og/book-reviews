@@ -11,7 +11,6 @@ const db = new pg.Client({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
 });
-
 const app = express();
 const port = 3000;
 
@@ -67,6 +66,10 @@ app.get("/book", async (req, res) => {
         console.log("Error: ", error)
     }
 
+})
+
+app.get("/addBook", async (req, res) => {
+    res.render("addBook.ejs");
 })
 
 app.post("/sort", async (req, res) => {    
